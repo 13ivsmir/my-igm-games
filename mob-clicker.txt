@@ -5,7 +5,7 @@ Let's make a game!
         by:13ivsmir
         desc:This is my game!
         created:12/03/2025
-        updated:whydoyouneedthiswhengameisntupdatedyet
+        updated:12/03/2025
 
 Settings
         background:stuff/meadow.jpg
