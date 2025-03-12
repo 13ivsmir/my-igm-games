@@ -1,0 +1,129 @@
+//well, if you came to this, then visit this link : https://orteil.dashnet.org/igm/?g=https://github.com/13ivsmir/my-igm-games/blob/main/mob-clicker.txt
+
+Let's make a game!
+        name:Mob Clicker
+        by:13ivsmir
+        desc:This is my game!
+        created:12/03/2025
+        updated:whydoyouneedthiswhengameisntupdatedyet
+
+Settings
+        background:stuff/meadow.jpg
+        building cost increase:100%
+        building cost refund:0%
+
+CSS
+  #game.filtersOn .thing.cantAfford.notOwned
+  {
+    filter:blur(3px)
+  }
+
+Layout
+        use default
+        //wip
+
+Buttons
+        *attack
+                name:Attack!
+                desc:Attack mob! [?(attackCooldown>0)|<b>Cooldown:</b> [attackCooldown]|]
+                on click:
+                        if (attackCooldown=0)
+                                lose playerDmg enemyHp
+                                $attackspeed=1/[attackspeedmulti]
+                                attackCooldown=attackCooldown+$attackspeed
+                                if (enemyHp<=playerDmg)
+                                        $expgained=1*[expmulti]
+                                        yield $expgained exp
+                                        yield 1 kill
+                                        yield 10 enemyHp
+                                end
+                        end
+                end
+                no text
+                class:bigButton hasFlares
+
+Resources
+        *exp
+                name:EXP
+                desc:This is your experience (EXP)!
+                show earned
+
+        *enemyHp
+                name:Enemy HP
+                desc:This is enemy's HP!
+                on start:
+                        yield 10 enemyHp
+                end
+
+        *kill|kills
+                name:Kill|Kills
+                desc:This is your kills!
+                hidden when 0
+
+        *attackCooldown
+                name:Attack Cooldown
+                hidden when 0
+
+        *attackspeedmulti
+                always hidden
+
+        *expmulti
+                always hidden
+
+Buildings
+        //none here, or maybe wip? who knows...
+
+Upgrades
+        *TEMPLATE
+                on click:anim glow
+
+        *expmultiupg1
+                name:EXP Multi #1
+                desc:<b>Effect:</b><//><.>+1x to EXP gain
+                passive:yield 1 expmulti
+                cost:15 exp
+
+        //wip
+
+Items
+        //possibly wont be added
+
+Achievements
+        *welcome
+                name:Welcome!
+                desc:Welcome to <b>Mob Clicker</b>!
+                on start:
+                        yield welcome
+                end
+
+        *exprPro
+                name:Experience Pro
+                desc:Gain 100 <b>EXP</b>
+                req:if (exp:earned>=100)
+        *exprExpert
+                name:Experience Expert
+                desc:Gain 500 <b>EXP</b>
+                req:if (exp:earned>=500)
+        *exprMaster
+                name:Experience Master
+                desc: Gain 1k <b>EXP</b>
+                req:if (exp:earned>=1000)
+        *exprAdept
+                name:Experience Adept
+                desc:Gain 2.5k <b>EXP</b>
+                req:if (exp:earned>=2500)
+        *exprGrand
+                name:Experience Grand
+                desc:Gain 5k <b>EXP</b>
+                req:if (exp:earned>=5000)
+
+        *killsPro
+                name:Kills Pro
+                desc:Reach 50 <b>Kills</b>
+                req:if (kills:earned>=50)
+        *killsExpert
+                name:Kills Expert
+                desc:Reach 100 <b>Kills</b>
+                req:if (kills:earned>=100)
+        
+        //more soon
